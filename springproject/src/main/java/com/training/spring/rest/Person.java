@@ -7,16 +7,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.training.spring.validation.StartWith;
-
 @XmlRootElement
 public class Person {
 
-    @StartWith("is:")
+    //@StartWith("is:")
     @NotEmpty(message = "name boş olamaz")
     @Size(min = 2, max = 20, message = "name 2 ile 20 arasında olmalı")
     private String  name;
-    @StartWith("soy:")
+    //@StartWith("soy:")
     @NotEmpty(message = "surname boş olamaz")
     @Size(min = 3, max = 30, message = "surname {min} ile {max} arasında olmalı")
     private String  surname;
