@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 //@Controller
@@ -21,9 +24,17 @@ public class SpringprojectApplication {
 
     private MyHello       myHello4;
 
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        RestTemplate restTemplateLoc = new RestTemplate();
+        return restTemplateLoc;
+    }
+
     @Autowired
     @Qualifier("dynamic")
-    private MyHelloEx     myHelloEx;
+    private MyHelloEx myHelloEx;
 
     public SpringprojectApplication(final MyHello myHello1Param,
                                     final MyHello myHello2Param,

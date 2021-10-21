@@ -2,9 +2,11 @@ package com.training.spring.rest;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/first")
 public class MyFirst {
 
+    @Value("${server.port}")
+    private int port;
+
     @GetMapping("/hello")
     //@RequestMapping(path = "/hello", method = RequestMethod.GET)
     public String hello() {
@@ -26,10 +31,10 @@ public class MyFirst {
 
     @GetMapping("/hello2/{abc}")
     public String xyz(@PathVariable("abc") final String name) {
-        return "Hello " + name;
+        return "Hello " + name + " from : " + this.port;
     }
 
-    @GetMapping("/hello2/{abc}/dfg/{jkl}")
+    @GetMapping("/hello20/{abc}/dfg/{jkl}")
     public String xyz(@PathVariable("abc") final String name,
                       @PathVariable("jkl") final String surname) {
         return "Hello " + name + " " + surname;
@@ -66,7 +71,7 @@ public class MyFirst {
     }
 
     @PostMapping("/hello9")
-    public Person hello9(@RequestBody final Person personParam) {
+    public Person hello9(@Validated @RequestBody final Person personParam) {
         personParam.setName("test");
         return personParam;
     }
@@ -86,7 +91,7 @@ public class MyFirst {
     }
 
 
-    @GetMapping("/hello2/{komut}")
+    @GetMapping("/hello100/{komut}")
     public ResponseEntity<?> process(@PathVariable("komut") final String command,
                                      final HttpServletRequest hr) {
         switch (command) {

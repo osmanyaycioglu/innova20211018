@@ -1,4 +1,4 @@
-package com.training.spring.error;
+package com.training.spring.order.error;
 
 import java.util.List;
 
@@ -16,12 +16,24 @@ public class ErrorHandlers {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorObj handleError(final IllegalArgumentException exceptionParam) {
 
-        return new ErrorObj().setDomain("Person")
-                             .setSubdomain("care")
-                             .setBoundedContext("provision")
-                             .setMicroservice("management")
+        return new ErrorObj().setDomain("Order")
+                             .setSubdomain("Order")
+                             .setBoundedContext("Order")
+                             .setMicroservice("Order")
                              .setErrorCause(1000)
                              .setDesc(exceptionParam.getMessage());
+    }
+
+    @ExceptionHandler(RestClientException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorObj handleError(final RestClientException exceptionParam) {
+        return new ErrorObj().setDomain("Order")
+                             .setSubdomain("Order")
+                             .setBoundedContext("Order")
+                             .setMicroservice("Order")
+                             .setErrorCause(8000)
+                             .setDesc("Error while calling another micro.")
+                             .addSubError(exceptionParam.getErrorObj());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
