@@ -1,0 +1,23 @@
+server:
+  port: ${PORT:8080}
+spring:
+  application:
+    name: restaurant-context
+  cloud:
+    config:
+      uri: http://127.0.0.1:8888
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+      - id: route1
+        uri: lb://RESTAURANT
+        predicates:
+        - Path=/api/v1/restaurant/**
+      - id: route2
+        uri: lb://ACCOUNT
+        predicates:
+        - Path=/api/v1/customer/**

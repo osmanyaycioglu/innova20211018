@@ -1,4 +1,4 @@
-package com.training.spring.order.models;
+package com.training.spring.customer;
 
 
 public class Customer {
@@ -12,32 +12,36 @@ public class Customer {
         return this.name;
     }
 
-    public void setName(final String nameParam) {
+    public Customer setName(final String nameParam) {
         this.name = nameParam;
+        return this;
     }
 
     public String getSurname() {
         return this.surname;
     }
 
-    public void setSurname(final String nurnameParam) {
+    public Customer setSurname(final String nurnameParam) {
         this.surname = nurnameParam;
+        return this;
     }
 
     public String getPhone() {
         return this.phone;
     }
 
-    public void setPhone(final String phoneParam) {
+    public Customer setPhone(final String phoneParam) {
         this.phone = phoneParam;
+        return this;
     }
 
     public String getAddress() {
         return this.address;
     }
 
-    public void setAddress(final String addressParam) {
+    public Customer setAddress(final String addressParam) {
         this.address = addressParam;
+        return this;
     }
 
 

@@ -1,11 +1,13 @@
 package com.training.spring.order.models;
 
+import java.math.BigDecimal;
 
 public class OrderResponse {
 
-    private Boolean placed;
-    private Long    orderNumber;
-    private String  desc;
+    private Boolean    placed;
+    private Long       orderNumber;
+    private String     desc;
+    private BigDecimal price;
 
     public Boolean getPlaced() {
         return this.placed;
@@ -31,6 +33,15 @@ public class OrderResponse {
 
     public OrderResponse setDesc(final String descParam) {
         this.desc = descParam;
+        return this;
+    }
+
+    public BigDecimal getPrice() {
+        return this.price;
+    }
+
+    public OrderResponse setPrice(final BigDecimal priceParam) {
+        this.price = priceParam;
         return this;
     }
 
